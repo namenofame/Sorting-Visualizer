@@ -1,0 +1,16 @@
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import Main from "./components/Main/MainContainer.js";
+import store from "./store";
+
+// store.subscribe(()=>{
+//   console.log(store.getState())
+// })
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Main />
+  </Provider>,
+  document.getElementById("app")
+);
