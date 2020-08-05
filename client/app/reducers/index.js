@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { array } from "./array";
+import { speed } from "./speed";
 import { algorithm } from "./algorithm";
 import { currentBubbleTwo } from "./bubbleSort";
 import { currentSelectionTwo } from "./selectionSort";
@@ -13,6 +14,7 @@ import { isRunning } from "./running";
 
 export default combineReducers({
   array,
+  speed,
   algorithm,
   currentBubbleTwo,
   currentSelectionTwo,

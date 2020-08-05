@@ -3,6 +3,7 @@ import Body from "./Body.jsx";
 
 const mapStateToProps = ({
   array,
+  speed,
   currentBubbleTwo,
   currentSelectionTwo,
   currentInsertionTwo,
@@ -14,6 +15,7 @@ const mapStateToProps = ({
   currentMergeX,
 }) => ({
   array,
+  speed,
   currentBubbleTwo,
   currentSelectionTwo,
   currentInsertionTwo,

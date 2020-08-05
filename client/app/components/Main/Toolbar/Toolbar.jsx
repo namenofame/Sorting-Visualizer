@@ -6,13 +6,20 @@ class Toolbar extends Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleChange2 = this.handleChange2.bind(this);
   }
 
   componentDidMount() {
     const { generateArray } = this.props;
+    const { changeSpeed } =this.props;
+    const al=87;
+    const spd=570 - Math.pow(al, 2) > 0 ? 570 - Math.pow(al, 2) : 0;
 
-    generateArray(87);
+    generateArray(al);
+    changeSpeed(spd);
+
     document.getElementById("changeSize").value = 50;
+    document.getElementById("changeSpeed").value=50;
   }
 
   handleClick(algorithm) {
@@ -27,16 +34,25 @@ class Toolbar extends Component {
     generateArray(Math.floor((parseInt(evt.target.value) + 3) * 1.65));
   }
 
+  handleChange2(evt){
+    const { changeSpeed } =this.props;
+    const al=Math.floor((parseInt(evt.target.value) + 3) * 1.65);
+    const spd=570 - Math.pow(al, 2) > 0 ? 570 - Math.pow(al, 2) : 0;
+
+    changeSpeed(spd);
+  }
+
+
   render() {
-    const { array, algorithm, generateArray, sort, isRunning } = this.props;
+    const { array, speed, algorithm, generateArray, sort, isRunning } = this.props;
     let algorithmtype = "";
     if (algorithm) {
       algorithmtype += algorithm.slice(0, 1).toUpperCase();
       algorithmtype += algorithm.slice(1);
     }
-    const speed =
-      570 - Math.pow(array.length, 2) > 0 ? 570 - Math.pow(array.length, 2) : 0;
-
+    // const speed =
+    //   570 - Math.pow(array.length, 2) > 0 ? 570 - Math.pow(array.length, 2) : 0;
+    //console.log("speed:" + speed);
     const color = isRunning ? "rgba(214, 29, 29, 0.8)" : "white";
 
     const cursor = isRunning ? "auto" : "pointer";
@@ -238,7 +254,7 @@ class Toolbar extends Component {
                   className="navbar-text"
                   style={{ color: color }}
                 >
-                  Change Array Size & Sorting Speed
+                  Change Array Size
                 </span>
               </li>
               <li className="nav-item">
@@ -252,6 +268,29 @@ class Toolbar extends Component {
                     style={{ background: color, cursor: cursor }}
                     disabled={isRunning ? "disabled" : null}
                     onChange={this.handleChange}
+                  ></input>
+                </form>
+              </li>
+              <li className="nav-item">
+                <span
+                  id="arraySpeed"
+                  className="navbar-text"
+                  style={{ color: color }}
+                >
+                  Change Sorting Speed    
+                </span>
+              </li>
+              <li className="nav-item">
+                <form className="form-inline my-2 my-lg-0">
+                  <input
+                    className="form-control mr-sm-2"
+                    id="changeSpeed"
+                    type="range"
+                    min="0"
+                    max="100"
+                    style={{ background: color, cursor: cursor }}
+                    disabled={isRunning ? "disabled" : null}
+                    onChange={this.handleChange2}
                   ></input>
                 </form>
               </li>

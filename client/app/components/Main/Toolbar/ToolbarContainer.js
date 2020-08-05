@@ -4,6 +4,7 @@ import { setArray } from "../../../reducers/array";
 import { setAlgorithm } from "../../../reducers/algorithm";
 import { setCurrentSorted } from "../../../reducers/sorted";
 import { setRunning } from "../../../reducers/running";
+import { setSpeed } from "../../../reducers/speed";
 import bubbleSort from "../../../algorithms/bubbleSort.js";
 import quickSort from "../../../algorithms/quickSort.js";
 import heapSort from "../../../algorithms/heapSort.js";
@@ -11,8 +12,9 @@ import mergeSort from "../../../algorithms/mergeSort.js";
 import selectionSort from "../../../algorithms/selectionSort.js";
 import insertionSort from "../../../algorithms/insertionSort.js";
 
-const mapStateToProps = ({ array, algorithm, isRunning }) => ({
+const mapStateToProps = ({ array, speed, algorithm, isRunning }) => ({
   array,
+  speed,
   algorithm,
   isRunning,
 });
@@ -25,6 +27,10 @@ const mapDispatchToProps = () => (dispatch) => ({
     }
     dispatch(setArray(array));
     dispatch(setCurrentSorted([]));
+  },
+
+  changeSpeed: (spd) => {
+    dispatch(setSpeed(spd));
   },
 
   updateAlgorithm: (algorithm) => {
